@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+.listItem {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: 1fr;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  width: 70%;
+  background-color: #e185d7;
+  margin: 2%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+.topbar {
+  background-color: #333;
+  color: white;
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.topbar button:hover {
+  color: blue;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.showBook {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
+  padding: 20px;
+  background-color: #daa8d2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.nav {
+  background-color: #daa8d2;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.nav button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 5% 40% 25% 10% 10% 10%;
+}
+
+.headers {
+  display: grid;
+  grid-template-columns: 5% 40% 25% 10% 10% 10%;
+}
