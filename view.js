@@ -12,6 +12,8 @@ const getBookHtml = (book) => {
 };
 
 const renderBooks = (books, index) => {
+  if (index * 5 >= books.length) index--;
+  console.log("Rendering books from index", index * 5, "to", index * 5 + 4);
   const arr = books.slice(index * 5, index * 5 + 5);
   let htmlBooks = arr.map((book) => getBookHtml(book)).join("");
   document.getElementById("listItem").innerHTML += htmlBooks;
@@ -57,8 +59,8 @@ function renderClearBookBoard() {
 function getHeders() {
   return `  <div class="headers">
               <h2>id</h2>
-              <h2>book</h2>
-              <h2>price</h2>
+              <h2 onclick="sortBooksByTitle()">Book</h2>
+              <h2 onclick="sortBooksByPrice()">Price</h2>
               <h2>action</h2>
           </div>`;
 }

@@ -16,15 +16,17 @@
       <div class="main-container">
         <div id="listItem" class="listItem">
           <div class="headers">
-            <h2>id</h2>
-            <h2>book</h2>
-            <h2>price</h2>
-            <h2>action</h2>
+              <h2>ID</h2>
+              <h2 onclick="sortBooksByTitle()">Book</h2>
+              <h2 onclick="sortBooksByPrice()">Price</h2>
+              <h2>action</h2>
+            </div>
           </div>
-        </div>
-        <div id="showBook" class="showBook">
+          <div id="showBook" class="showBook">
           <h2>show book data</h2>
         </div>
+        </div>
+        
       </div>
       <div id="newBookSidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
