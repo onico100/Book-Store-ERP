@@ -10,7 +10,7 @@
     <h1>Book Store ERP</h1>
     <div class="container">
         <div class="topbar">
-            <button>New Book</button>
+            <button onclick="openSidebar()">New Book</button>
             <button>Search</button>
     </div>
     <div class="main-container">
@@ -59,6 +59,24 @@
         <div class="showBook">
             <div>book 1</div>
         </div>
+        <div id="newBookSidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+            <form>
+              <h2>Add New Book</h2>
+
+              <label for="bookId">ID</label><br />
+              <input type="number" id="bookId" name="bookId" placeholder="Enter book id" /><br />
+
+              <label for="bookName">Book Name</label><br />
+              <input type="text" id="bookName" name="bookName" placeholder="Enter book name" /><br />
+      
+              <label for="bookPrice">Price</label><br />
+              <input type="number" id="bookPrice" name="bookPrice" placeholder="Enter price" /><br />
+      
+              <button type="submit">Add Book</button>
+            </form>
+          </div>
     </div>
+    <script src="controller.js"></script>
   </body>
 </html>
