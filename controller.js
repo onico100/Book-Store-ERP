@@ -27,25 +27,32 @@ function closeSidebar() {
 }
 
 function initShop() {
-  gBookData = books;
+  gBookData = getObjFromLS("bookData") || books;
+  index = getFromLocalStorage("index") || 0;
+  gBookDataIndex = getFromLocalStorage("bookDataIndex") || -1;
+  if (gBookDataIndex !== -1) renderBookDescription(gBookData[gBookDataIndex]);
   console.log(gBookData);
-  renderBooks(gBookData, 0);
+  renderBooks(gBookData, index);
 }
 
 function showbookData(bookId) {
   book = gBookData[bookId - 1];
+  gBookDataIndex = bookId - 1;
+  saveObjToLS("bookDataIndex", gBookDataIndex);
   renderBookDescription(book);
 }
 
 function goNext() {
   clearBook();
   index++;
+  saveObjToLS("index", index);
   renderBooks(gBookData, index);
 }
 
 function goPrevious() {
   clearBook();
   index--;
+  saveObjToLS("index", index);
   renderBooks(gBookData, index);
 }
 
@@ -80,24 +87,30 @@ function handleSubmit(event) {
   const existingBookIndex = books.findIndex((b) => b.id === newBook.id);
   if (existingBookIndex !== -1) {
     // Update existing book
-    books[existingBookIndex] = newBook;
+    gBookData[existingBookIndex] = newBook;
     alert(`Book "${newBook.title}" updated successfully!`);
   } else {
     // Add new book
-    books.push(newBook);
+    gBookData.push(newBook);
     alert(`Book "${newBook.title}" added successfully!`);
   }
+
+  saveObjToLS("bookData", gBookData);
+  clearBook();
+  renderBooks(gBookData, index);
+  renderBookDescription(newBook);
 
   closeSidebar();
 }
 
 function deleteBook(bookId) {
-  const index = books.findIndex((b) => b.id === bookId);
+  const index = gBookData.findIndex((b) => b.id === bookId);
   if (index !== -1) {
-    let title = books[index].title;
-    books.splice(index, 1);
+    let title = gBookData[index].title;
+    gBookData.splice(index, 1);
     alert(`Book "${title}" deleted successfully!`);
   }
+  saveObjToLS("bookData", gBookData);
   clearBook();
   renderBooks(gBookData, 0);
 }
@@ -107,6 +120,19 @@ function updateRating(delta, bookId) {
   let bookIndex = gBookData.findIndex((b) => b.id === bookId);
   if (bookIndex !== -1) {
     gBookData[bookIndex].rating += delta;
+    saveObjToLS("bookData", gBookData);
   }
   showbookData(bookId);
+}
+
+function getObjFromLS(key) {
+  return JSON.parse(getFromLocalStorage(key));
+}
+
+function getFromLocalStorage(key) {
+  return localStorage.getItem(key);
+}
+
+function saveObjToLS(key, obj) {
+  localStorage.setItem(key, JSON.stringify(obj));
 }
