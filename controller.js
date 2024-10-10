@@ -101,3 +101,12 @@ function deleteBook(bookId) {
   clearBook();
   renderBooks(gBookData, 0);
 }
+
+function updateRating(delta, bookId) {
+  // Update book rating in gBookData array
+  let bookIndex = gBookData.findIndex((b) => b.id === bookId);
+  if (bookIndex !== -1) {
+    gBookData[bookIndex].rating += delta;
+  }
+  showbookData(bookId);
+}
