@@ -30,7 +30,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
           >&times;</a
         >
-        <form>
+        <form onsubmit="handleSubmit(event)">
           <h2>Add New Book</h2>
 
           <label for="bookId">ID</label><br />
@@ -56,6 +56,14 @@
             name="bookPrice"
             placeholder="Enter price"
           /><br />
+
+          <label for="bookImg">Image</label><br />
+          <input
+            type="text"
+            id="bookImg"
+            name="bookImg"
+            placeholder="Enter image url"
+          />
 
           <button type="submit">Add Book</button>
         </form>
