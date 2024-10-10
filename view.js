@@ -1,11 +1,11 @@
 const getBookHtml = (book) => {
   return `
-      <div class="table">
-                <div>${book.id}</div>
-               <div>${book.title}</div>
-               <div>${book.price}</div>
-               <div>action</div> 
-            </div>`;
+    <div class="table">
+      <div>${book.id}</div>
+      <div onclick="showbookData(${book.id})" style="cursor: pointer; color: blue; text-decoration: underline;">${book.title}</div>
+      <div>${book.price}</div>
+      <div>action</div>
+    </div>`;
 };
 
 const renderBooks = (books, index) => {
