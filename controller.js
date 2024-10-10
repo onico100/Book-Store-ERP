@@ -1,4 +1,24 @@
-function openSidebar() {
+function openSidebar(action, bookId = null) {
+  const sidebar = document.getElementById("sidebar");
+  const formTitle = document.getElementById("formTitle");
+  const submitBtn = document.getElementById("submitBtn");
+
+  if (action === "add") {
+    formTitle.textContent = "Add New Book";
+    submitBtn.textContent = "Add Book";
+    document.getElementById("bookForm").reset();
+  } else if (action === "edit" && bookId) {
+    let book = gBookData.find((b) => b.id === bookId);
+    formTitle.textContent = "Update Book";
+    submitBtn.textContent = "Update Book";
+
+    // Populate form with existing book data
+    document.getElementById("bookId").value = book.id;
+    document.getElementById("bookName").value = book.title;
+    document.getElementById("bookPrice").value = book.price;
+    document.getElementById("bookImg").value = book.coverImageUrl;
+    document.getElementById("bookRating").value = book.rating;
+  }
   document.getElementById("newBookSidebar").style.width = "400px";
 }
 
@@ -57,10 +77,14 @@ function handleSubmit(event) {
     coverImageUrl: bookImg,
     rating: bookRating,
   };
-
-  // Add the new book to the array
-  gBookData.push(newBook);
-
-  //reset the form
-  alert("Book added successfully!");
+  const existingBookIndex = books.findIndex((b) => b.id === newBook.id);
+  if (existingBookIndex !== -1) {
+    // Update existing book
+    books[existingBookIndex] = newBook;
+    alert(`Book "${newBook.title}" updated successfully!`);
+  } else {
+    // Add new book
+    books.push(newBook);
+    alert(`Book "${newBook.title}" added successfully!`);
+  }
 }

@@ -10,7 +10,7 @@
     <h1>Book Store ERP</h1>
     <div class="container">
       <div class="topbar">
-        <button onclick="openSidebar()">New Book</button>
+        <button onclick="openSidebar('add')">New Book</button>
         <button>Search</button>
       </div>
       <div class="main-container">
@@ -30,9 +30,8 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
           >&times;</a
         >
-        <form onsubmit="handleSubmit(event)">
-          <h2>Add New Book</h2>
-
+        <form id="bookForm" onsubmit="handleSubmit(event)">
+          <h2 id="formTitle">Add New Book</h2>
           <label for="bookId">ID</label><br />
           <input
             type="number"
@@ -62,7 +61,7 @@
             type="text"
             id="bookImg"
             name="bookImg"
-            placeholder="Enter image url"
+            placeholder="Enter image URL"
           />
 
           <label for="bookRating">Rating</label><br />
@@ -73,7 +72,7 @@
             placeholder="Enter rating"
           /><br />
 
-          <button type="submit">Add Book</button>
+          <button type="submit" id="submitBtn">Add Book</button>
         </form>
       </div>
     </div>

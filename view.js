@@ -1,11 +1,14 @@
 const getBookHtml = (book) => {
   return `
     <div class="table">
-      <div>${book.id}</div>
-      <div onclick="showbookData(${book.id})" style="cursor: pointer; color: blue; text-decoration: underline;">${book.title}</div>
-      <div>${book.price}</div>
-      <div>action</div>
-    </div>`;
+            <div>${book.id}</div>
+            <div onclick="showbookData(${book.id})" style="cursor: pointer; color: blue; text-decoration: underline;">${book.title}</div>
+            <div>${book.price}</div>
+            <div>
+                <button onclick="deleteBook(${book.id})">Delete</button>
+                <button onclick="openSidebar('edit', ${book.id})">Edit</button>
+            </div>
+          </div>`;
 };
 
 const renderBooks = (books, index) => {
