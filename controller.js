@@ -45,14 +45,18 @@ function showbookData(bookId) {
 }
 
 function goNext() {
+  if ((index + 1) * 5 >= gBookData.length) return;
   clearBook();
   index++;
+  console.log();
   saveObjToLS("index", index);
   renderBooks(gBookData, index);
 }
 
 function goPrevious() {
+  if (index <= 0) return;
   clearBook();
+
   index--;
   saveObjToLS("index", index);
   renderBooks(gBookData, index);
@@ -121,7 +125,8 @@ function updateRating(delta, bookId) {
   // Update book rating in gBookData array
   let bookIndex = gBookData.findIndex((b) => b.id === bookId);
   if (bookIndex !== -1) {
-    gBookData[bookIndex].rating += delta;
+    newRate = parseInt(gBookData[bookIndex].rating) + delta;
+    gBookData[bookIndex].rating = newRate;
     saveObjToLS("bookData", gBookData);
   }
   showbookData(bookId);

@@ -4,15 +4,14 @@ const getBookHtml = (book) => {
             <div>${book.id}</div>
             <div onclick="showbookData(${book.id})" style="cursor: pointer; color: blue; text-decoration: underline;">${book.title}</div>
             <div>${book.price}</div>
-            <div>
-                <button onclick="deleteBook(${book.id})">Delete</button>
+            <div class="action">
                 <button onclick="openSidebar('edit', ${book.id})">Edit</button>
+                <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Delete" class="delete-icon" onclick="deleteBook(${book.id})" >
             </div>
           </div>`;
 };
 
 const renderBooks = (books, index) => {
-  if (index * 5 >= books.length) index--;
   console.log("Rendering books from index", index * 5, "to", index * 5 + 4);
   const arr = books.slice(index * 5, index * 5 + 5);
   let htmlBooks = arr.map((book) => getBookHtml(book)).join("");
