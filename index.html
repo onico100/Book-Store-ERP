@@ -9,73 +9,57 @@
   <body onload="initShop()">
     <h1>Book Store ERP</h1>
     <div class="container">
-        <div class="topbar">
-            <button onclick="openSidebar()">New Book</button>
-            <button>Search</button>
-    </div>
-    <div class="main-container">
+      <div class="topbar">
+        <button onclick="openSidebar()">New Book</button>
+        <button>Search</button>
+      </div>
+      <div class="main-container">
         <div id="listItem" class="listItem">
-            <div class="headers">
-                 <h2>id</h2>
-                 <h2>book</h2>
-                 <h2>price</h2>
-                 <h2>action</h2>
-                </div>
-            <div class="table">
-               <div>id1</div>
-               <div>book 1</div>
-               <div>price</div>
-               <div>action</div> 
-            </div>
-            <div class="table">
-                <div>id2</div>
-                <div>book 2</div>
-                <div>price</div>
-                <div>action</div> 
-        </div>
-            <div class="table">
-                <div>id3</div>
-               <div>book 3</div>
-               <div>price</div>
-               <div>action</div> 
-            </div>
-            <div class="table">
-                <div>id4</div>
-               <div>book 4</div>
-               <div>price</div>
-               <div>action</div> 
-            </div>
-            <div class="table">
-                <div>id1</div>
-               <div>book 1</div>
-               <div>price</div>
-               <div>action</div> 
-            </div>
-            <div class="nav">
-                <button>prev</button>
-                <button>Next</button>
-            </div>
-        </div>
-        <div class="showBook">
-            <div>book 1</div>
-        </div>
-        <div id="newBookSidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
-            <form>
-              <h2>Add New Book</h2>
-
-              <label for="bookId">ID</label><br />
-              <input type="number" id="bookId" name="bookId" placeholder="Enter book id" /><br />
-
-              <label for="bookName">Book Name</label><br />
-              <input type="text" id="bookName" name="bookName" placeholder="Enter book name" /><br />
-      
-              <label for="bookPrice">Price</label><br />
-              <input type="number" id="bookPrice" name="bookPrice" placeholder="Enter price" /><br />
-      
-              <button type="submit">Add Book</button>
-            </form>
+          <div class="headers">
+            <h2>id</h2>
+            <h2>book</h2>
+            <h2>price</h2>
+            <h2>action</h2>
           </div>
+        </div>
+        <div id="showBook" class="showBook">
+          <h2>show book data</h2>
+        </div>
+      </div>
+      <div id="newBookSidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()"
+          >&times;</a
+        >
+        <form>
+          <h2>Add New Book</h2>
+
+          <label for="bookId">ID</label><br />
+          <input
+            type="number"
+            id="bookId"
+            name="bookId"
+            placeholder="Enter book id"
+          /><br />
+
+          <label for="bookName">Book Name</label><br />
+          <input
+            type="text"
+            id="bookName"
+            name="bookName"
+            placeholder="Enter book name"
+          /><br />
+
+          <label for="bookPrice">Price</label><br />
+          <input
+            type="number"
+            id="bookPrice"
+            name="bookPrice"
+            placeholder="Enter price"
+          /><br />
+
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
     </div>
     <script src="dump.js"></script>
     <script src="model.js"></script>
