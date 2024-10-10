@@ -87,4 +87,26 @@ function handleSubmit(event) {
     books.push(newBook);
     alert(`Book "${newBook.title}" added successfully!`);
   }
+
+  closeSidebar();
+}
+
+function deleteBook(bookId) {
+  const index = books.findIndex((b) => b.id === bookId);
+  if (index !== -1) {
+    let title = books[index].title;
+    books.splice(index, 1);
+    alert(`Book "${title}" deleted successfully!`);
+  }
+  clearBook();
+  renderBooks(gBookData, 0);
+}
+
+function updateRating(delta, bookId) {
+  // Update book rating in gBookData array
+  let bookIndex = gBookData.findIndex((b) => b.id === bookId);
+  if (bookIndex !== -1) {
+    gBookData[bookIndex].rating += delta;
+  }
+  showbookData(bookId);
 }

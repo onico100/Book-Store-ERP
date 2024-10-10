@@ -39,8 +39,8 @@ function getBookDescription(book) {
         <p>Price: ${book.price}</p>
         <div class="book-rating">
           <p>Rating: <span id="book-rating-value">${book.rating}</span>/10</p>
-          <button id="minus-btn">-</button>
-          <button id="plus-btn">+</button>
+          <button id="minus-btn" onclick="updateRating(-1, ${book.id})">-</button>
+          <button id="plus-btn"  onclick="updateRating(1, ${book.id})">+</button>
         </div>
       </div>
     </div>`;
