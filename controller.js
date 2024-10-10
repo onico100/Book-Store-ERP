@@ -10,10 +10,25 @@ function initShop() {
   gBookData = books;
   console.log(gBookData);
   renderBooks(gBookData, 0);
-  showbookData(2);
 }
 
 function showbookData(bookId) {
   book = gBookData[bookId - 1];
   renderBookDescription(book);
+}
+
+function goNext() {
+  clearBook();
+  index++;
+  renderBooks(gBookData, index);
+}
+
+function goPrevious() {
+  clearBook();
+  index--;
+  renderBooks(gBookData, index);
+}
+
+function clearBook() {
+  renderClearBookBoard();
 }

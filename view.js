@@ -17,8 +17,8 @@ const renderBooks = (books, index) => {
 
 function getNav() {
   return `    <div class="nav">
-    <button>prev</button>
-    <button>Next</button>
+    <button onclick="goPrevious()">prev</button>
+    <button onclick="goNext()">Next</button>
 </div>`;
 }
 
@@ -45,4 +45,17 @@ function getBookDescription(book) {
 
 function renderBookDescription(book) {
   document.getElementById("showBook").innerHTML = getBookDescription(book);
+}
+
+function renderClearBookBoard() {
+  document.getElementById("listItem").innerHTML = getHeders();
+}
+
+function getHeders() {
+  return `  <div class="headers">
+              <h2>id</h2>
+              <h2>book</h2>
+              <h2>price</h2>
+              <h2>action</h2>
+          </div>`;
 }
