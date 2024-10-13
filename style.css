@@ -203,3 +203,7 @@
 .listItem button:hover {
   color: black;
 }
+
+.direction {
+  direction: rtl;
+}

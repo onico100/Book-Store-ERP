@@ -172,3 +172,11 @@ function loadData() {
   clearBook();
   renderBooks(gBookData, 0);
 }
+
+function translate1() {
+  if (language === "en") language = "he";
+  else language = "en";
+  renderAll();
+  clearBook();
+  renderBooks(gBookData, index);
+}
