@@ -3,7 +3,8 @@ const books = [
     id: 1,
     title: "To Kill a Mockingbird",
     price: 18.99,
-    coverImageUrl: "https://m.media-amazon.com/images/I/51R3lhZZ+SL.jpg",
+    coverImageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
     rating: Math.floor(Math.random() * 10) + 1,
   },
   {
@@ -31,7 +32,8 @@ const books = [
     id: 5,
     title: "Pride and Prejudice",
     price: 9.99,
-    coverImageUrl: "https://m.media-amazon.com/images/I/81zg8sErWzL.jpg",
+    coverImageUrl:
+      "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p468777_b_v10_bo.jpg",
     rating: Math.floor(Math.random() * 10) + 1,
   },
   {
@@ -80,7 +82,8 @@ const books = [
     id: 12,
     title: "Crime and Punishment",
     price: 18.99,
-    coverImageUrl: "https://m.media-amazon.com/images/I/81OthIKFSKL.jpg",
+    coverImageUrl:
+      "https://upload.wikimedia.org/wikipedia/en/4/4b/Crimeandpunishmentcover.png",
     rating: Math.floor(Math.random() * 10) + 1,
   },
   {
