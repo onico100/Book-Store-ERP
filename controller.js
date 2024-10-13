@@ -49,8 +49,11 @@ function showbookData(bookId) {
 }
 
 function goIndex(num) {
+  if (num < 0) num = 0;
+  if (num >= Math.ceil(gBookData.length / 5))
+    num = Math.ceil(gBookData.length / 5) - 1;
   clearBook();
-  console.log("Going to index", num);
+
   index = num;
   saveObjToLS("index", Number(num));
   renderBooks(gBookData, num);

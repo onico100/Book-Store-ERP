@@ -17,14 +17,14 @@ const renderBooks = (books, index) => {
   console.log("Books to render:", arr);
   let htmlBooks = arr.map((book) => getBookHtml(book)).join("");
   document.getElementById("listItem").innerHTML += htmlBooks;
-  document.getElementById("listItem").innerHTML += getNav();
+  document.getElementById("listItem").innerHTML += getNavHtml();
 };
 
-function getNav() {
+function getNavHtml() {
   return `<div class="nav">
-    <button onclick="goIndex(${--index})">prev</button>
+    <button onclick="goIndex(--index)">prev</button>
     ${getPageButtonsHtm()}
-    <button onclick="goIndex(${++index})">Next</button>
+    <button onclick="goIndex(++index)">Next</button>
 </div>`;
 }
 
