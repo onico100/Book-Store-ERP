@@ -49,7 +49,7 @@ function getBookDataHtml(book) {
     </div>`;
 }
 
-function renderBookDescription(book) {
+function renderBookData(book) {
   document.getElementById("showBook").innerHTML = getBookDataHtml(book);
 }
 

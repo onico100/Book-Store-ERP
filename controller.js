@@ -28,24 +28,26 @@ function closeSidebar() {
 
 function initShop() {
   gBookData = getObjFromLS("bookData") || books;
-  console.log(gBookData);
   index = getFromLocalStorage("index") || -1;
-  gBookDataIndex = getFromLocalStorage("bookDataIndex") || -1;
+  gBookDataIndex = Number(getFromLocalStorage("bookDataIndex") || -1);
+  console.log("shopIndex = " + gBookDataIndex);
   showbookData(gBookDataIndex);
-  console.log(gBookData);
   renderBooks(gBookData, index);
 }
 
 function showbookData(bookId) {
-  book = gBookData.find((b) => b.id === bookId) || -1;
-  if (bookId == -1) {
+  console.log(gBookData);
+  console.log("showing book data for bookId = " + bookId);
+  book = gBookData.find((b) => b.id === bookId);
+  console.log(book);
+  if (book == -1) {
     renderBookEmpty();
-    return "";
+    return;
   }
 
   gBookDataIndex = bookId;
-  saveObjToLS("bookDataIndex", gBookDataIndex);
-  renderBookDescription(book);
+  saveObjToLS("bookDataIndex", Number(gBookDataIndex));
+  renderBookData(book);
 }
 
 function goIndex(num) {
@@ -101,7 +103,7 @@ function handleSubmit(event) {
   saveObjToLS("bookData", gBookData);
   clearBook();
   renderBooks(gBookData, index);
-  renderBookDescription(newBook);
+  renderBookData(newBook);
 
   closeSidebar();
 }
