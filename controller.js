@@ -28,39 +28,37 @@ function closeSidebar() {
 
 function initShop() {
   gBookData = getObjFromLS("bookData") || books;
-  console.log(gBookData);
-  index = getFromLocalStorage("index") || 0;
-  gBookDataIndex = getFromLocalStorage("bookDataIndex") || -1;
-  if (gBookDataIndex !== -1 && gBookDataIndex < gBookData.length)
-    renderBookDescription(gBookData[gBookDataIndex]);
-  console.log(gBookData);
+  index = getFromLocalStorage("index") || -1;
+  gBookDataIndex = Number(getFromLocalStorage("bookDataIndex") || -1);
+  console.log("shopIndex = " + gBookDataIndex);
+  showbookData(gBookDataIndex);
   renderBooks(gBookData, index);
 }
 
 function showbookData(bookId) {
-  if (bookId == -1) return "";
+  console.log(gBookData);
+  console.log("showing book data for bookId = " + bookId);
   book = gBookData.find((b) => b.id === bookId);
+  console.log(book);
+  if (bookId == -1) {
+    renderBookEmpty();
+    return;
+  }
+
   gBookDataIndex = bookId;
-  saveObjToLS("bookDataIndex", gBookDataIndex);
-  renderBookDescription(book);
+  saveObjToLS("bookDataIndex", Number(gBookDataIndex));
+  renderBookData(book);
 }
 
-function goNext() {
-  if ((index + 1) * 5 >= gBookData.length) return;
-  clearBook();
-  index++;
-  console.log();
-  saveObjToLS("index", index);
-  renderBooks(gBookData, index);
-}
-
-function goPrevious() {
-  if (index <= 0) return;
+function goIndex(num) {
+  if (num < 0) num = 0;
+  if (num >= Math.ceil(gBookData.length / 5))
+    num = Math.ceil(gBookData.length / 5) - 1;
   clearBook();
 
-  index--;
-  saveObjToLS("index", index);
-  renderBooks(gBookData, index);
+  index = num;
+  saveObjToLS("index", Number(num));
+  renderBooks(gBookData, num);
 }
 
 function clearBook() {
@@ -68,15 +66,13 @@ function clearBook() {
 }
 
 function handleSubmit(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  const form = event.target;
 
-  // Get values from form inputs
-  const bookId = document.getElementById("bookId").value;
-  const bookName = document.getElementById("bookName").value;
-  const bookPrice = document.getElementById("bookPrice").value;
-  const bookImg = document.getElementById("bookImg").value;
-  const bookRating = document.getElementById("bookRating").value;
-
+  const bookId = form.bookId.value;
+  const bookName = form.bookName.value;
+  const bookPrice = form.bookPrice.value;
+  const bookImg = form.bookImg.value;
+  const bookRating = form.bookRating.value;
   // Validate inputs
   if (!bookId || !bookName || !bookPrice || !bookImg) {
     alert("Please fill out all fields");
@@ -105,16 +101,16 @@ function handleSubmit(event) {
   saveObjToLS("bookData", gBookData);
   clearBook();
   renderBooks(gBookData, index);
-  renderBookDescription(newBook);
+  renderBookData(newBook);
 
   closeSidebar();
 }
 
 function deleteBook(bookId) {
-  const index = gBookData.findIndex((b) => b.id === bookId);
-  if (index !== -1) {
-    let title = gBookData[index].title;
-    gBookData.splice(index, 1);
+  const Bindex = gBookData.findIndex((b) => b.id === bookId);
+  if (Bindex !== -1) {
+    let title = gBookData[Bindex].title;
+    gBookData.splice(Bindex, 1);
     alert(`Book "${title}" deleted successfully!`);
   }
   if (gBookDataIndex == bookId) {
@@ -124,7 +120,8 @@ function deleteBook(bookId) {
   }
   saveObjToLS("bookData", gBookData);
   clearBook();
-  renderBooks(gBookData, 0);
+  if (Bindex == index * 5) index--;
+  renderBooks(gBookData, index);
 }
 
 function updateRating(delta, bookId) {
@@ -164,6 +161,14 @@ function sortBooksByPrice() {
 }
 
 function updateSort() {
+  clearBook();
+  renderBooks(gBookData, 0);
+}
+
+function loadData() {
+  gBookData = books;
+  index = 0;
+  saveObjToLS("bookData", gBookData);
   clearBook();
   renderBooks(gBookData, 0);
 }

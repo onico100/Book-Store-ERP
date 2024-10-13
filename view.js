@@ -14,19 +14,21 @@ const getBookHtml = (book) => {
 const renderBooks = (books, index) => {
   console.log("Rendering books from index", index * 5, "to", index * 5 + 4);
   const arr = books.slice(index * 5, index * 5 + 5);
+  console.log("Books to render:", arr);
   let htmlBooks = arr.map((book) => getBookHtml(book)).join("");
   document.getElementById("listItem").innerHTML += htmlBooks;
-  document.getElementById("listItem").innerHTML += getNav();
+  document.getElementById("listItem").innerHTML += getNavHtml();
 };
 
-function getNav() {
-  return `    <div class="nav">
-    <button onclick="goPrevious()">prev</button>
-    <button onclick="goNext()">Next</button>
+function getNavHtml() {
+  return `<div class="nav">
+    <button onclick="goIndex(--index)">prev</button>
+    ${getPageButtonsHtm()}
+    <button onclick="goIndex(++index)">Next</button>
 </div>`;
 }
 
-function getBookDescription(book) {
+function getBookDataHtml(book) {
   return `<h2 id="book-title">${book.title}</h2>
     <div class="book-details">
       <div class="book-cover">
@@ -47,8 +49,8 @@ function getBookDescription(book) {
     </div>`;
 }
 
-function renderBookDescription(book) {
-  document.getElementById("showBook").innerHTML = getBookDescription(book);
+function renderBookData(book) {
+  document.getElementById("showBook").innerHTML = getBookDataHtml(book);
 }
 
 function renderClearBookBoard() {
@@ -62,4 +64,16 @@ function getHeders() {
               <h2 onclick="sortBooksByPrice()">Price</h2>
               <h2>action</h2>
           </div>`;
+}
+
+function renderBookEmpty() {
+  document.getElementById("showBook").innerHTML = "<h1>No book found</h1>";
+}
+
+function getPageButtonsHtm() {
+  let buttonsHtml = "";
+  for (let i = 0; i < Math.ceil(gBookData.length / 5); i++) {
+    buttonsHtml += `<button onclick="goIndex(${i})">${i + 1}</button>`;
+  }
+  return buttonsHtml;
 }
