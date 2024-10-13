@@ -72,7 +72,7 @@ function renderBookEmpty() {
 
 function getPageButtonsHtm() {
   let buttonsHtml = "";
-  for (let i = 0; i < Math.ceil(books.length / 5); i++) {
+  for (let i = 0; i < Math.ceil(gBookData.length / 5); i++) {
     buttonsHtml += `<button onclick="goIndex(${i})">${i + 1}</button>`;
   }
   return buttonsHtml;

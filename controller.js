@@ -40,7 +40,7 @@ function showbookData(bookId) {
   console.log("showing book data for bookId = " + bookId);
   book = gBookData.find((b) => b.id === bookId);
   console.log(book);
-  if (book == -1) {
+  if (bookId == -1) {
     renderBookEmpty();
     return;
   }
@@ -66,15 +66,13 @@ function clearBook() {
 }
 
 function handleSubmit(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  const form = event.target;
 
-  // Get values from form inputs
-  const bookId = document.getElementById("bookId").value;
-  const bookName = document.getElementById("bookName").value;
-  const bookPrice = document.getElementById("bookPrice").value;
-  const bookImg = document.getElementById("bookImg").value;
-  const bookRating = document.getElementById("bookRating").value;
-
+  const bookId = form.bookId.value;
+  const bookName = form.bookName.value;
+  const bookPrice = form.bookPrice.value;
+  const bookImg = form.bookImg.value;
+  const bookRating = form.bookRating.value;
   // Validate inputs
   if (!bookId || !bookName || !bookPrice || !bookImg) {
     alert("Please fill out all fields");
