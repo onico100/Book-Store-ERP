@@ -64,3 +64,7 @@ function getHeders() {
               <h2>action</h2>
           </div>`;
 }
+
+function renderBookEmpty() {
+  document.getElementById("showBook").innerHTML = "<h1>No book found</h1>";
+}
