@@ -14,6 +14,7 @@ const getBookHtml = (book) => {
 const renderBooks = (books, index) => {
   console.log("Rendering books from index", index * 5, "to", index * 5 + 4);
   const arr = books.slice(index * 5, index * 5 + 5);
+  console.log("Books to render:", arr);
   let htmlBooks = arr.map((book) => getBookHtml(book)).join("");
   document.getElementById("listItem").innerHTML += htmlBooks;
   document.getElementById("listItem").innerHTML += getNav();

@@ -29,7 +29,7 @@ function closeSidebar() {
 function initShop() {
   gBookData = getObjFromLS("bookData") || books;
   console.log(gBookData);
-  index = getFromLocalStorage("index") || 0;
+  index = getFromLocalStorage("bookDataIndex") || -1;
   gBookDataIndex = getFromLocalStorage("bookDataIndex") || -1;
   if (gBookDataIndex !== -1 && gBookDataIndex < gBookData.length)
     renderBookDescription(gBookData[gBookDataIndex]);
@@ -38,8 +38,8 @@ function initShop() {
 }
 
 function showbookData(bookId) {
+  book = gBookData.find((b) => b.id === bookId) || -1;
   if (bookId == -1) return "";
-  book = gBookData.find((b) => b.id === bookId);
   gBookDataIndex = bookId;
   saveObjToLS("bookDataIndex", gBookDataIndex);
   renderBookDescription(book);
@@ -164,6 +164,13 @@ function sortBooksByPrice() {
 }
 
 function updateSort() {
+  clearBook();
+  renderBooks(gBookData, 0);
+}
+
+function loadData() {
+  gBookData = books;
+  saveObjToLS("bookData", gBookData);
   clearBook();
   renderBooks(gBookData, 0);
 }
