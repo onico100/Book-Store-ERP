@@ -29,10 +29,9 @@ function closeSidebar() {
 function initShop() {
   gBookData = getObjFromLS("bookData") || books;
   console.log(gBookData);
-  index = getFromLocalStorage("bookDataIndex") || -1;
+  index = getFromLocalStorage("index") || -1;
   gBookDataIndex = getFromLocalStorage("bookDataIndex") || -1;
-  if (gBookDataIndex !== -1 && gBookDataIndex < gBookData.length)
-    renderBookDescription(gBookData[gBookDataIndex]);
+  showbookData(gBookDataIndex);
   console.log(gBookData);
   renderBooks(gBookData, index);
 }
