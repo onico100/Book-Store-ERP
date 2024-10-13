@@ -38,8 +38,9 @@ function initShop() {
 }
 
 function showbookData(bookId) {
-  book = gBookData[bookId - 1];
-  gBookDataIndex = bookId - 1;
+  if (bookId == -1) return "";
+  book = gBookData.find((b) => b.id === bookId);
+  gBookDataIndex = bookId;
   saveObjToLS("bookDataIndex", gBookDataIndex);
   renderBookDescription(book);
 }
@@ -115,6 +116,11 @@ function deleteBook(bookId) {
     let title = gBookData[index].title;
     gBookData.splice(index, 1);
     alert(`Book "${title}" deleted successfully!`);
+  }
+  if (gBookDataIndex == bookId) {
+    gBookDataIndex = -1;
+    showbookData(gBookDataIndex);
+    saveObjToLS("bookDataIndex", gBookDataIndex);
   }
   saveObjToLS("bookData", gBookData);
   clearBook();
