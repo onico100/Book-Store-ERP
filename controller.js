@@ -48,22 +48,12 @@ function showbookData(bookId) {
   renderBookDescription(book);
 }
 
-function goNext() {
-  if ((index + 1) * 5 >= gBookData.length) return;
+function goIndex(num) {
   clearBook();
-  index++;
-  console.log();
-  saveObjToLS("index", index);
-  renderBooks(gBookData, index);
-}
-
-function goPrevious() {
-  if (index <= 0) return;
-  clearBook();
-
-  index--;
-  saveObjToLS("index", index);
-  renderBooks(gBookData, index);
+  console.log("Going to index", num);
+  index = num;
+  saveObjToLS("index", Number(num));
+  renderBooks(gBookData, num);
 }
 
 function clearBook() {

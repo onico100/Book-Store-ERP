@@ -21,13 +21,14 @@ const renderBooks = (books, index) => {
 };
 
 function getNav() {
-  return `    <div class="nav">
-    <button onclick="goPrevious()">prev</button>
-    <button onclick="goNext()">Next</button>
+  return `<div class="nav">
+    <button onclick="goIndex(${--index})">prev</button>
+    ${getPageButtonsHtm()}
+    <button onclick="goIndex(${++index})">Next</button>
 </div>`;
 }
 
-function getBookDescription(book) {
+function getBookDataHtml(book) {
   return `<h2 id="book-title">${book.title}</h2>
     <div class="book-details">
       <div class="book-cover">
@@ -49,7 +50,7 @@ function getBookDescription(book) {
 }
 
 function renderBookDescription(book) {
-  document.getElementById("showBook").innerHTML = getBookDescription(book);
+  document.getElementById("showBook").innerHTML = getBookDataHtml(book);
 }
 
 function renderClearBookBoard() {
@@ -67,4 +68,12 @@ function getHeders() {
 
 function renderBookEmpty() {
   document.getElementById("showBook").innerHTML = "<h1>No book found</h1>";
+}
+
+function getPageButtonsHtm() {
+  let buttonsHtml = "";
+  for (let i = 0; i < Math.ceil(books.length / 5); i++) {
+    buttonsHtml += `<button onclick="goIndex(${i})">${i + 1}</button>`;
+  }
+  return buttonsHtml;
 }
