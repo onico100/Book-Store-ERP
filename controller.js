@@ -135,18 +135,6 @@ function updateRating(delta, bookId) {
   showbookData(bookId);
 }
 
-function getObjFromLS(key) {
-  return JSON.parse(getFromLocalStorage(key));
-}
-
-function getFromLocalStorage(key) {
-  return localStorage.getItem(key);
-}
-
-function saveObjToLS(key, obj) {
-  localStorage.setItem(key, JSON.stringify(obj));
-}
-
 function sortBooksByTitle() {
   gBookData.sort((a, b) => a.title.localeCompare(b.title));
   console.log("Books sorted by title:", books);
